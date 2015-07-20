@@ -1,0 +1,17 @@
+{
+    "contents" : "getIMC <- function(height, weight) round(weight/(height^2),1)\ngetIMCFeedback <- function(name, IMC, LL, UL) {\n        ifelse (IMC<LL, feedback <- \"you are under weight\", \n                        ifelse(IMC>UL, feedback<- \"you are over weight\", \n                               feedback <- \"you are in healthy values\"))\n        paste(name, feedback, sep=\", \")\n}\n\nshinyServer(\n        function(input, output) {\n                output$height <- renderPrint({round(input$height,2)})\n                output$weight <- renderPrint({round(input$weight,1)})\n                IMC <- reactive({getIMC(input$height, input$weight)})\n                output$IMC <- renderPrint({getIMC(input$height, input$weight)})\n                output$feedback <- renderPrint({getIMCFeedback(input$name, IMC(), input$LowerLimit, input$UpperLimit)})\n                midpoint <- reactive({input$LowerLimit+(input$UpperLimit - input$LowerLimit)/2})\n                output$midpoint <- renderPrint({midpoint})\n                output$plot <- renderPlot({plot(input$height, input$weight, \n                                                xlim=c(1.35, 2.15), ylim=c(45,150), \n                                                xlab=\"Height\", ylab=\"Weight\")\n                                           abline(0, 22.5)\n                                           })\n        })",
+    "created" : 1437394862614.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1811364568",
+    "id" : "A92647EF",
+    "lastKnownWriteTime" : 1437398610,
+    "path" : "D:/Privado/repos/9.DevelopingDataProducts/FinalProject/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

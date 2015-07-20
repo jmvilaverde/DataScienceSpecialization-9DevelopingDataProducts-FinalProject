@@ -1,0 +1,17 @@
+{
+    "contents" : "getIMC <- function(height, weight) round(weight/(height^2),1)\ngetIMCFeedback <- function(name, IMC, LL, UL, OB) {\n        ifelse (IMC<LL, feedback <- \"you are under weight\", \n                        ifelse(IMC<UL, feedback<- \"you are in healthy values\", \n                               ifelse(IMC<OB, feedback <- \"you are over weight\",\n                                      feedback <- \"you have obesity\")\n                        )\n        )\n        paste(name, feedback, sep=\", \")\n}\n\nshinyServer(\n        function(input, output) {\n                output$height <- renderPrint({round(input$height,2)})\n                output$weight <- renderPrint({round(input$weight,1)})\n                \n                BMI <- reactive({getIMC(input$height, input$weight)})\n                output$BMI <- renderPrint({getIMC(input$height, input$weight)})\n                output$feedback <- renderPrint({getIMCFeedback(input$name, BMI(), input$LowerLimit, input$UpperLimit, input$ObesityLimit)})\n                \n                output$plot <- renderPlot({plot(input$height, input$weight, \n                                                xlim=c(1.35, 2.15), ylim=c(45,150), \n                                                xlab=\"Height\", ylab=\"Weight\", pch=10, col=\"blue\")\n                                           curve(input$LowerLimit*x^2, add=TRUE, col=\"Orange\")\n                                           curve(input$UpperLimit*x^2, add=TRUE, col=\"tomato3\")\n                                           curve(input$ObesityLimit*x^2, add=TRUE, col=\"red\")\n                                           })\n        })",
+    "created" : 1437394862614.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "636111149",
+    "id" : "A92647EF",
+    "lastKnownWriteTime" : 1437413417,
+    "path" : "D:/Privado/repos/9.DevelopingDataProducts/FinalProject/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

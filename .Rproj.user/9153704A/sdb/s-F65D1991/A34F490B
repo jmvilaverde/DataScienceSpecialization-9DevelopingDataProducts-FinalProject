@@ -1,0 +1,17 @@
+{
+    "contents" : "shinyUI(pageWithSidebar(\n        headerPanel(\"Developing Data Products - Final Project - Body Mass Index Calculator\"),\n        sidebarPanel(\n                h1('Input Panel'),\n                textInput(\"name\", \"Your name\", \"User\"),\n                sliderInput(\"height\", \"Your height\", 1.75, min=1.35, max=2.15, step=0.01),\n                numericInput(\"weight\", \"Your weight\", 75, min=45, max=150, step=0.1),\n                submitButton(\"Submit\"),\n                h2(\"Instructions:\"),\n                tabsetPanel(\n                        tabPanel(\"BMI Results\",\n                                p(\"1. Input your name into 'Your name' section\"),\n                                p(\"2. Input your height into 'Your height' section\"),\n                                p(\"3. Input your weight into 'Your weight' section\"),\n                                p(\"4. Click submit to obtain the result into 'BMI Results' tab.\")\n                        ),\n                        tabPanel(\"Config limits\",\n                                p(\"1. Go to 'Config limits' tab.\"),\n                                p(\"2. Set Lower, Upper and Obesity limits.\"),\n                                p(\"3. Click Save.\")\n                        )\n                )\n        ),\n        mainPanel(\n                tabsetPanel(\n                        tabPanel(\"BMI Results\",\n                                h4(\"Your height\"),\n                                verbatimTextOutput(\"height\"),\n                                h4(\"Your weight\"),\n                                verbatimTextOutput(\"weight\"),\n                                h4(\"Your BMI\"),\n                                verbatimTextOutput(\"BMI\"),\n                                h4(\"Feedback\"),\n                                verbatimTextOutput(\"feedback\"),\n                                plotOutput(\"plot\")\n                                ),\n                        tabPanel(\"Config limits\",\n                                 numericInput(\"LowerLimit\",\"Lower limit\",18.5, step=0.5),\n                                 numericInput(\"UpperLimit\",\"Upper limit\",25, step=0.5),\n                                 numericInput(\"ObesityLimit\",\"Obesity limit\",30, step=0.5),\n                                 submitButton(\"Save\")\n                                 )\n                        )\n                )\n        )\n)",
+    "created" : 1437394851436.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3810947290",
+    "id" : "A34F490B",
+    "lastKnownWriteTime" : 1437413518,
+    "path" : "D:/Privado/repos/9.DevelopingDataProducts/FinalProject/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
